@@ -1,95 +1,58 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+'use client'
+import useOnline from './utils/useOnline';
 
-export default function Home() {
+const Network = () => {
+    const isOnline = useOnline();
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.js</code>
-        </p>
+   <>
+    <div style={{display:'flex', alignItems:'center', justifyContent:'center',  height:'100vh'}}>
+      <div>
         <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+        <label className="switch">
+                    <input className="switch__input" type="checkbox" checked={isOnline} role="switch" readOnly />
+                    <span className="switch__base-outer"></span>
+                    <span className="switch__base-inner"></span>
+                    <svg className="switch__base-neon" viewBox="0 0 40 24" width="40px" height="24px">
+                        <defs>
+                            <filter id="switch-glow">
+                                <feGaussianBlur result="coloredBlur" stdDeviation="1"></feGaussianBlur>
+                                <feMerge>
+                                    <feMergeNode in="coloredBlur"></feMergeNode>
+                                    <feMergeNode in="SourceGraphic"></feMergeNode>
+                                </feMerge>
+                            </filter>
+                            <linearGradient id="switch-gradient1" x1="0" y1="0" x2="1" y2="0">
+                                <stop offset="0%" stopColor="hsl(var(--on-hue1),90%,70%)" />
+                                <stop offset="100%" stopColor="hsl(var(--on-hue2),90%,70%)" />
+                            </linearGradient>
+                            <linearGradient id="switch-gradient2" x1="0.7" y1="0" x2="0.3" y2="1">
+                                <stop offset="25%" stopColor="hsla(var(--on-hue1),90%,70%,0)" />
+                                <stop offset="50%" stopColor="hsla(var(--on-hue1),90%,70%,0.3)" />
+                                <stop offset="100%" stopColor="hsla(var(--on-hue2),90%,70%,0.3)" />
+                            </linearGradient>
+                        </defs>
+                        <path fill="none" filter="url(#switch-glow)" stroke="url(#switch-gradient1)" strokeWidth="1" strokeDasharray="0 104.26 0" strokeDashoffset="0.01" strokeLinecap="round" d="m.5,12C.5,5.649,5.649.5,12,.5h16c6.351,0,11.5,5.149,11.5,11.5s-5.149,11.5-11.5,11.5H12C5.649,23.5.5,18.351.5,12Z" />
+                    </svg>
+                    <span className="switch__knob-shadow"></span>
+                    <span className="switch__knob-container">
+                        <span className="switch__knob">
+                            <svg className="switch__knob-neon" viewBox="0 0 48 48" width="48px" height="48px">
+                                <circle fill="none" stroke="url(#switch-gradient2)" strokeDasharray="0 90.32 0 54.19" strokeLinecap="round" strokeWidth="1" r="23" cx="24" cy="24" transform="rotate(-112.5,24,24)" />
+                            </svg>
+                        </span>
+                    </span>
+                    <span className="switch__led"></span>
+                    <span className="switch__text">Power</span>
+                </label>
+        </div>
+        <div style={{textAlign:'center', fontSize:15, marginTop:20}}>
+            {!isOnline ?'You are not connected to the internet !':'Online'}
         </div>
       </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+      
+    </div>
+   </>
   )
 }
+
+export default Network
