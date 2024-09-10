@@ -46,7 +46,7 @@ const Network = () => {
                 </label>
         </div>
         <div style={{textAlign:'center', fontSize:15, marginTop:20}}>
-            {!isOnline ?'You are not connected to the internet !':'Online'}
+            {!isOnline ?'You are not connected to the internet !':'Your are online, disconnect your wifi !'}
         </div>
       </div>
       
